@@ -1,5 +1,3 @@
-package main;
-
 import service.Librarian;
 import service.Library;
 import view.Menu;
