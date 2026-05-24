@@ -1,11 +1,9 @@
 package view;
 
-import model.Book;
-import model.BorrowSlip;
-import model.Reader;
-import model.ReaderType;
+import model.*;
 import service.Librarian;
 import service.Library;
+import utils.ValidationHelper;
 
 import java.time.LocalDate;
 import java.util.Scanner;
@@ -15,6 +13,8 @@ public class Menu {
     private Library library;
     private Librarian librarian;
     private Scanner scanner;
+
+    ValidationHelper helper = new ValidationHelper();
 
     public Menu(Library library, Librarian librarian) {
         this.library = library;
@@ -84,42 +84,37 @@ public class Menu {
 
         // ================= READERS =================
         library.addReader(
-                new Reader(
+                new Student(
                         "Nguyen Van An",
-                        "an@gmail.com",
-                        ReaderType.STUDENT
+                        "an@gmail.com"
                 )
         );
 
         library.addReader(
-                new Reader(
+                new Student(
                         "Tran Thi Mai",
-                        "mai@gmail.com",
-                        ReaderType.STUDENT
+                        "mai@gmail.com"
                 )
         );
 
         library.addReader(
-                new Reader(
+                new Lecturer(
                         "Le Hoang Nam",
-                        "nam@gmail.com",
-                        ReaderType.LECTURER
+                        "nam@gmail.com"
                 )
         );
 
         library.addReader(
-                new Reader(
+                new Lecturer(
                         "Pham Thu Ha",
-                        "ha@gmail.com",
-                        ReaderType.LECTURER
+                        "ha@gmail.com"
                 )
         );
 
         library.addReader(
-                new Reader(
+                new Student(
                         "Vo Minh Quan",
-                        "quan@gmail.com",
-                        ReaderType.STUDENT
+                        "quan@gmail.com"
                 )
         );
 
@@ -163,7 +158,7 @@ public class Menu {
             showMenu();
 
             System.out.print("Enter choice: ");
-            choice = Integer.parseInt(scanner.nextLine());
+            choice = helper.parseInt(0, 10);
 
             switch (choice) {
                 case 1:
@@ -239,20 +234,16 @@ public class Menu {
         String author = scanner.nextLine();
 
         System.out.print("Publish Year: ");
-        int year =
-                Integer.parseInt(scanner.nextLine());
+        int year = helper.parseInt();
 
         System.out.print("Quantity: ");
-        int quantity =
-                Integer.parseInt(scanner.nextLine());
+        int quantity = helper.parsePositiveInt();
 
         Book book = new Book( title, author, year, quantity);
 
         library.addBook(book);
 
-        System.out.println(
-                "Book added successfully!"
-        );
+        System.out.println("Book added successfully!");
     }
 
     // ================= ADD READER =================
@@ -263,24 +254,17 @@ public class Menu {
         System.out.print("Email: ");
         String email = scanner.nextLine();
 
-        System.out.println("1. STUDENT");
-        System.out.println("2. LECTURER");
+        System.out.println("1. Student");
+        System.out.println("2. Lecturer");
 
-        int typeChoice =
-                Integer.parseInt(scanner.nextLine());
+        int choice = helper.parseInt(1, 2);
 
-        ReaderType type;
-
-        if (typeChoice == 1) {
-
-            type = ReaderType.STUDENT;
-
+        Reader reader;
+        if (choice == 1) {
+            reader = new Student(name, email);
         } else {
-
-            type = ReaderType.LECTURER;
+            reader = new Lecturer( name, email);
         }
-
-        Reader reader = new Reader(name, email, type);
 
         library.addReader(reader);
 
@@ -310,12 +294,7 @@ public class Menu {
         }
 
         System.out.print("Borrow duration (days): ");
-        int borrowDuration = Integer.parseInt(scanner.nextLine());
-
-        if (borrowDuration <= 0) {
-            System.out.println("Borrow duration must be greater than zero!");
-            return;
-        }
+        int borrowDuration = helper.parsePositiveInt();
 
         librarian.borrowBook(library, reader, book, borrowDuration);
     }
@@ -332,8 +311,8 @@ public class Menu {
             return;
         }
 
-        System.out.print("Return day (yyyy-MM-dd): ");
-        LocalDate returnDate = LocalDate.parse(scanner.nextLine());
+        System.out.print("Return day (dd/MM/yyyy): ");
+        LocalDate returnDate = helper.parseDate();
 
         librarian.returnBook(slip, returnDate);
     }
@@ -348,16 +327,8 @@ public class Menu {
 
     // ================= OVERDUE =================
     private void showOverdueSlips() {
-        System.out.print("Enter current year: ");
-        int year = Integer.parseInt(scanner.nextLine());
-
-        System.out.print("Enter current month: ");
-        int month = Integer.parseInt(scanner.nextLine());
-
-        System.out.print("Enter current day: ");
-        int day = Integer.parseInt(scanner.nextLine());
-
-        LocalDate currentDate = LocalDate.of(year, month, day);
+        System.out.print("Enter due day (dd/MM/yyyy): ");
+        LocalDate currentDate = helper.parseDate();
 
         library.showOverdueSlips(currentDate);
     }

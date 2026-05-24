@@ -1,5 +1,7 @@
 package model;
 
+import utils.ValidationHelper;
+
 import java.time.LocalDate;
 
 public class BorrowSlip {
@@ -68,8 +70,8 @@ public class BorrowSlip {
                 "Slip ID: " + slipId +
                 " | Reader: " + reader.getFullName() +
                 " | Book: " + book.getTitle() +
-                " | Borrow Date: " + borrowDate +
-                " | Due Date: " + dueDate +
+                " | Borrow Date: " + borrowDate.format(ValidationHelper.DATE_FORMAT) +
+                " | Due Date: " + dueDate.format(ValidationHelper.DATE_FORMAT) +
                 " | Returned: " + returned
         );
     }

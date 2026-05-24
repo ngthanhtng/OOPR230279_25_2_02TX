@@ -76,7 +76,7 @@ public class Library {
         }
 
         for (Reader r : readers) {
-            r.displayInfo();
+            System.out.println(r.toString());
         }
     }
 
@@ -180,7 +180,7 @@ public class Library {
 
         if (topReader != null) {
             System.out.println("\nTop Reader:");
-            topReader.displayInfo();
+            System.out.println(topReader.toString());
             System.out.println("Total Borrows: " + maxCount);
         }
     }
