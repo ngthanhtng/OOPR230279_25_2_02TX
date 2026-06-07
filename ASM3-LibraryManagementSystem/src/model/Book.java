@@ -22,6 +22,20 @@ public class Book {
         this.author = author;
         this.publishYear = publishYear;
         this.quantity = quantity;
+        this.referenceOnly = false;
+
+        this.currentBorrowCount = 0;
+        totalBooks++;
+    }
+
+    public Book(String title, String author, int publishYear, int quantity, boolean referenceOnly) {
+        counter++;
+        this.bookId = String.format("B%03d", counter);
+        this.title = title;
+        this.author = author;
+        this.publishYear = publishYear;
+        this.quantity = quantity;
+        this.referenceOnly = referenceOnly;
 
         this.currentBorrowCount = 0;
         totalBooks++;
@@ -72,7 +86,8 @@ public class Book {
                         " | Author: " + author +
                         " | Year: " + publishYear +
                         " | Quantity: " + quantity +
-                        " | Borrowed: " + currentBorrowCount
+                        " | Borrowed: " + currentBorrowCount +
+                        " | Is Reference Only: " + referenceOnly
         );
     }
 }

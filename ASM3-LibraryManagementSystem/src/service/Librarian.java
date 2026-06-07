@@ -17,13 +17,7 @@ public class Librarian {
 
     private Library library;
 
-    public Librarian(
-            String employeeId,
-            String fullName,
-            String phone,
-            String shift,
-            Library library) {
-
+    public Librarian(String employeeId, String fullName, String phone, String shift, Library library) {
         this.employeeId = employeeId;
         this.fullName = fullName;
         this.phone = phone;
@@ -35,24 +29,14 @@ public class Librarian {
      * ASM07
      * Thủ thư xử lý cho mượn qua Template Method
      */
-    public void processLoan(
-            Reader reader,
-            Book book,
-            int borrowDuration) {
+    public void processLoan(Reader reader, Book book, int borrowDuration) {
+        System.out.println("[Librarian " + fullName + "] Processing...");
 
-        System.out.println(
-                "[Librarian " + fullName + "] Processing..."
-        );
+        BorrowResult result = reader.processBorrow(book);
 
-        BorrowResult result =
-                reader.processBorrow(book);
-
-        System.out.println(
-                result.getMessage()
-        );
+        System.out.println(result.getMessage());
 
         if (result.isSuccess()) {
-
             BorrowSlip slip =
                     new BorrowSlip(
                             reader,
@@ -68,41 +52,24 @@ public class Librarian {
     /*
      * Giữ lại logic trả sách cũ
      */
-    public void processReturn(
-            BorrowSlip slip,
-            LocalDate returnDate) {
-
+    public void processReturn(BorrowSlip slip, LocalDate returnDate) {
         if (slip.isReturned()) {
-            System.out.println(
-                    "Book already returned!"
-            );
+            System.out.println("Book already returned!");
             return;
         }
 
         slip.getBook().returnBook();
-
         slip.getReader().decreaseBorrowCount();
 
         slip.returnBook(returnDate);
 
-        double fine =
-                FineCalculator.calculateFine(slip);
+        double fine = FineCalculator.calculateFine(slip);
 
         if (fine > 0) {
-
-            System.out.println(
-                    "Late return!"
-            );
-
-            System.out.println(
-                    "Fine: " + fine + " VND"
-            );
-
+            System.out.println("Late return!");
+            System.out.println("Fine: " + fine + " VND");
         } else {
-
-            System.out.println(
-                    "Returned on time!"
-            );
+            System.out.println("Returned on time!");
         }
     }
 }

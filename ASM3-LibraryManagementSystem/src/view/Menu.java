@@ -33,7 +33,8 @@ public class Menu {
                         "Dac Nhan Tam",
                         "Dale Carnegie",
                         2019,
-                        5
+                        5,
+                        true
                 )
         );
 
