@@ -1,10 +1,9 @@
-import model.DigitalAccount;
-import model.GuestAccount;
-import model.LecturerAccount;
-import model.StudentAccount;
+import model.*;
 import service.Librarian;
 import service.Library;
 import view.Menu;
+
+import java.util.ArrayList;
 
 public class Main {
 
@@ -93,6 +92,36 @@ public class Main {
          *      (email + password, email + OTP, RFID,...).
          *    - Chưa có cơ chế bảo mật và quản lý số lần tải thực tế.
          */
+
+        // ASM6 + nâng cao
+        library.addReader(
+                new SeniorReader(
+                        "Truong Minh Nhat",
+                        "nhat@gmail.com",
+                        "CC2024001"
+                )
+        );
+
+        library.showAllReaders();
+        System.out.printf("Total fee over 5 days: %.0f VND%n", library.calculateTotalLateFee(5));
+
+        Reader found = library.findReaderByName("Nhat");
+        if (found != null) {
+            System.out.println(found.getInfo());
+        }
+
+        library.printSeniorReaders();
+
+        ArrayList<CardHolder> holders = new ArrayList<>();
+        for (Reader reader : library.getReaders()) {
+            if (reader instanceof CardHolder) {
+                holders.add((CardHolder) reader);
+            }
+        }
+
+        library.renewAllCardHolders(holders, 1);
+
+        Library.printFeeReport(library.getReaders(), 5);
 
         // ASM 1-4
         menu.start();

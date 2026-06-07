@@ -1,8 +1,6 @@
 package service;
 
-import model.Book;
-import model.BorrowSlip;
-import model.Reader;
+import model.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -12,6 +10,10 @@ public class Library {
     private ArrayList<Book> books = new ArrayList<>();
     private ArrayList<Reader> readers = new ArrayList<>();
     private ArrayList<BorrowSlip> slips = new ArrayList<>();
+
+    public ArrayList<Reader> getReaders() {
+        return readers;
+    }
 
     // ================= ADD =================
     public void addBook(Book book) {
@@ -69,7 +71,7 @@ public class Library {
         }
     }
 
-    public void showAllReaders() {
+    public void showAllReaders() { // Chức năng tương tự printAllReaders()
         if (readers.isEmpty()) {
             System.out.println("No readers!");
             return;
@@ -194,6 +196,53 @@ public class Library {
         System.out.println("=== LATE FEES (" + daysLate + " days) ===");
         for (Reader r : readers) {
             System.out.printf("%-20s | Fee: %.0f VND%n", r.getFullName(), r.calculateLateFee(daysLate));
+        }
+    }
+
+    public double calculateTotalLateFee(int daysLate) {
+        double total = 0;
+
+        for (Reader r : readers) {
+            total += r.calculateLateFee(daysLate);
+        }
+        return total;
+    }
+
+    public Reader findReaderByName(String keyword) {
+        for (Reader r : readers) {
+            if (r.getFullName().toLowerCase().contains(keyword.toLowerCase())) {
+                return r;
+            }
+        }
+        return null;
+    }
+
+    public void printSeniorReaders() {
+        System.out.println("Senior Readers:");
+
+        int count = 0;
+        for (Reader r : readers) {
+            if (r instanceof SeniorReader) {
+                SeniorReader sr = (SeniorReader) r;
+                System.out.println(sr.getInfo() + ", Card: " + sr.getSeniorCardNumber());
+                count++;
+            }
+        }
+
+        if (count == 0) System.out.println("No Senior Readers!");
+    }
+
+    public void renewAllCardHolders(ArrayList<CardHolder> holders, int months) {
+        for (CardHolder h : holders) {
+            h.renewCard(months);
+        }
+    }
+
+    public static void printFeeReport(ArrayList<Reader> readers, int daysLate) {
+        System.out.println("===== FEE REPORT =====");
+
+        for (Reader r : readers) {
+            System.out.printf("%s | %.0f VND%n", r.getFullName(), r.calculateLateFee(daysLate));
         }
     }
 }

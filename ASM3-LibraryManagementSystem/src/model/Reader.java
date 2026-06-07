@@ -12,6 +12,8 @@ public abstract class Reader {
     private static int counter = 0;
     private static int totalReaders = 0;
 
+    public Reader() {}
+
     public Reader(String fullName, String email) {
         counter++;
         this.readerId = String.format("R%03d", counter);
@@ -52,3 +54,11 @@ public abstract class Reader {
 
     public abstract String getInfo();
 }
+
+/*
+     * LSP VIOLATION
+     * renewAllReaders() kỳ vọng mọi Reader đều hỗ trợ renewCard().
+     * GuestReader không có thẻ nên không thể renewCard().
+     * Khi GuestReader được truyền vào nơi đang mong đợi Reader, chương trình bị lỗi runtime.
+     * Vì vậy GuestReader không thể thay thế hoàn toàn Reader => vi phạm LSP.
+ */

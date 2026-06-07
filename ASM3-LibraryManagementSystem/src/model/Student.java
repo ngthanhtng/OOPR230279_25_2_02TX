@@ -1,9 +1,14 @@
 package model;
 
-public class Student extends Reader {
+public class Student extends CardHolder {
 
     public Student(String fullName, String email) {
         super(fullName, email);
+    }
+
+    @Override
+    public void renewCard(int months) {
+        super.renewCard(months);
     }
 
     @Override
