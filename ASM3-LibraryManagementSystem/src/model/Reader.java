@@ -1,6 +1,6 @@
 package model;
 
-public class Reader {
+public abstract class Reader {
 
     private String readerId;
     private String fullName;
@@ -30,6 +30,10 @@ public class Reader {
         return fullName;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
     public int getCurrentBorrowCount() {
         return currentBorrowCount;
     }
@@ -42,15 +46,9 @@ public class Reader {
         currentBorrowCount--;
     }
 
-    public int getMaxBorrowLimit() {
-        return 0;
-    }
+    public abstract int getMaxBorrowLimit();
 
-    @Override
-    public String toString() {
-        return "Reader ID: " + readerId +
-                ", Name: " + fullName +
-                ", Email: " + email +
-                ", Current Borrow: " + currentBorrowCount;
-    }
+    public abstract double calculateLateFee(int daysLate);
+
+    public abstract String getInfo();
 }

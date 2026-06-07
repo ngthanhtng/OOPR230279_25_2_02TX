@@ -12,7 +12,16 @@ public class Lecturer extends Reader {
     }
 
     @Override
-    public String toString() {
-        return super.toString() + ", Type: Lecturer" + ", Max Borrow: " + getMaxBorrowLimit();
+    public double calculateLateFee(int daysLate) {
+        return daysLate * 1000;
+    }
+
+    @Override
+    public String getInfo() {
+        return "[Lecturer] ID: " + getReaderId() +
+                ", Name: " + getFullName() +
+                ", Email: " + getEmail() +
+                ", Current Borrow: " + getCurrentBorrowCount() +
+                ", Max Borrow: " + getMaxBorrowLimit();
     }
 }

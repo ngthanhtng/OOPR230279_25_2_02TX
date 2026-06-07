@@ -6,9 +6,9 @@ import java.time.temporal.ChronoUnit;
 
 public class FineCalculator {
 
-    private static final long FINE_PER_DAY = 5000;
+//    private static final long FINE_PER_DAY = 5000;
 
-    public static long calculateFine(BorrowSlip slip) {
+    public static double calculateFine(BorrowSlip slip) {
         // Chưa trả sách
         if (!slip.isReturned()) {
             return 0;
@@ -20,6 +20,6 @@ public class FineCalculator {
         }
 
         long lateDays = ChronoUnit.DAYS.between(slip.getDueDate(), slip.getReturnDate());
-        return lateDays * FINE_PER_DAY;
+        return slip.getReader().calculateLateFee((int) lateDays);
     }
 }

@@ -48,7 +48,7 @@ public class Librarian {
         slip.returnBook(returnDate);
 
         // Tính tiền phạt
-        long fine = FineCalculator.calculateFine(slip);
+        double fine = FineCalculator.calculateFine(slip);
 
         if (fine > 0) {
             System.out.println("Late return!");

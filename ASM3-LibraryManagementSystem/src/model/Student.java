@@ -12,7 +12,16 @@ public class Student extends Reader {
     }
 
     @Override
-    public String toString() {
-        return super.toString() + ", Type: Student" + ", Max Borrow: " + getMaxBorrowLimit();
+    public double calculateLateFee(int daysLate) {
+        return daysLate * 2000;
+    }
+
+    @Override
+    public String getInfo() {
+        return "[Student] ID: " + getReaderId() +
+                ", Name: " + getFullName() +
+                ", Email: " + getEmail() +
+                ", Current Borrow: " + getCurrentBorrowCount() +
+                ", Max Borrow: " + getMaxBorrowLimit();
     }
 }

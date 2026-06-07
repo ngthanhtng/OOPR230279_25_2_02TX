@@ -76,7 +76,7 @@ public class Library {
         }
 
         for (Reader r : readers) {
-            System.out.println(r.toString());
+            System.out.println(r.getInfo());
         }
     }
 
@@ -180,8 +180,20 @@ public class Library {
 
         if (topReader != null) {
             System.out.println("\nTop Reader:");
-            System.out.println(topReader.toString());
+            System.out.println(topReader.getInfo());
             System.out.println("Total Borrows: " + maxCount);
+        }
+    }
+
+    public void showLateFees(int daysLate) {
+        if (daysLate <= 0) {
+            System.out.println("Returned on time!");
+            return;
+        }
+
+        System.out.println("=== LATE FEES (" + daysLate + " days) ===");
+        for (Reader r : readers) {
+            System.out.printf("%-20s | Fee: %.0f VND%n", r.getFullName(), r.calculateLateFee(daysLate));
         }
     }
 }

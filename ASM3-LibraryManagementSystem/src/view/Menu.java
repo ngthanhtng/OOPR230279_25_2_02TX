@@ -83,6 +83,10 @@ public class Menu {
         );
 
         // ================= READERS =================
+//        library.addReader(
+//                new Reader("R001","Nguyen","a@b.com")
+//        ); Xảy ra lỗi biên dịch => Vì không tồn tại độc giả chung chung
+
         library.addReader(
                 new Student(
                         "Nguyen Van An",
