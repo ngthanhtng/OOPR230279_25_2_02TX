@@ -7,6 +7,7 @@ public class Book {
     private String author;
     private int publishYear;
     private int quantity;
+    private boolean referenceOnly;
 
     // Số lượng sách được mượn hiện tại
     private int currentBorrowCount;
@@ -48,6 +49,10 @@ public class Book {
 
     public boolean isAvailable() {
         return quantity > 0;
+    }
+
+    public boolean isReferenceOnly() {
+        return referenceOnly;
     }
 
     public void borrowBook() {

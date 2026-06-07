@@ -11,8 +11,15 @@ public class Library {
     private ArrayList<Reader> readers = new ArrayList<>();
     private ArrayList<BorrowSlip> slips = new ArrayList<>();
 
+    private LateFeePolicy feePolicy = new StandardFeePolicy();
+
     public ArrayList<Reader> getReaders() {
         return readers;
+    }
+
+    public void setFeePolicy(LateFeePolicy policy) {
+        this.feePolicy = policy;
+        System.out.println("Cap nhat chinh sach phi phat: " + policy.getPolicyName());
     }
 
     // ================= ADD =================
@@ -203,10 +210,26 @@ public class Library {
         double total = 0;
 
         for (Reader r : readers) {
-            total += r.calculateLateFee(daysLate);
+            double baseFee = r.calculateLateFee(daysLate);
+            double adjustedFee = feePolicy.applyPolicy(baseFee);
+
+            System.out.printf("%-20s | Base: %.0f | Sau CS: %.0f VND%n",
+                    r.getFullName(), baseFee, adjustedFee);
+            total += adjustedFee;
         }
+
+        System.out.printf("Tong phi phat (%s): %.0f VND%n", feePolicy.getPolicyName(), total);
         return total;
     }
+
+//    public double calculateTotalLateFee(int daysLate) {
+//        double total = 0;
+//
+//        for (Reader r : readers) {
+//            total += r.calculateLateFee(daysLate);
+//        }
+//        return total;
+//    }
 
     public Reader findReaderByName(String keyword) {
         for (Reader r : readers) {

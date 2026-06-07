@@ -123,29 +123,25 @@ public class Menu {
         );
 
         // ================= SLIPS =================
-        librarian.borrowBook(
-                        library,
+        librarian.processLoan(
                         library.findReaderById("r001"),
                         library.findBookById("b001"),
                         7
         );
 
-        librarian.borrowBook(
-                        library,
+        librarian.processLoan(
                         library.findReaderById("r003"),
                         library.findBookById("b002"),
                         14
         );
 
-        librarian.borrowBook(
-                        library,
+        librarian.processLoan(
                         library.findReaderById("r003"),
                         library.findBookById("b005"),
                         14
         );
 
-        librarian.borrowBook(
-                        library,
+        librarian.processLoan(
                         library.findReaderById("r005"),
                         library.findBookById("b002"),
                         4
@@ -300,7 +296,7 @@ public class Menu {
         System.out.print("Borrow duration (days): ");
         int borrowDuration = helper.parsePositiveInt();
 
-        librarian.borrowBook(library, reader, book, borrowDuration);
+        librarian.processLoan(reader, book, borrowDuration);
     }
 
     // ================= RETURN =================
@@ -318,7 +314,7 @@ public class Menu {
         System.out.print("Return day (dd/MM/yyyy): ");
         LocalDate returnDate = helper.parseDate();
 
-        librarian.returnBook(slip, returnDate);
+        librarian.processReturn(slip, returnDate);
     }
 
     // ================= SEARCH =================

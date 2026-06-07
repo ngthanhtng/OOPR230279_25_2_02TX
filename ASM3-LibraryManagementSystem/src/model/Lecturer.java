@@ -29,4 +29,14 @@ public class Lecturer extends CardHolder {
                 ", Current Borrow: " + getCurrentBorrowCount() +
                 ", Max Borrow: " + getMaxBorrowLimit();
     }
+
+    @Override
+    protected boolean checkSpecialCondition(Book book) {
+        return true;
+    }
+
+    @Override
+    protected String getSpecialConditionMessage() {
+        return "";
+    }
 }

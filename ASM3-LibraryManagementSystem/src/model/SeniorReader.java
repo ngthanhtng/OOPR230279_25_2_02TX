@@ -41,4 +41,20 @@ public class SeniorReader extends CardHolder {
     public String getSeniorCardNumber() {
         return seniorCardNumber;
     }
+
+    @Override
+    protected boolean checkSpecialCondition(Book book) {
+        return true;
+    }
+
+    @Override
+    protected String getSpecialConditionMessage() {
+        return "";
+    }
+
+    @Override
+    protected void onBorrowSuccess(Book book) {
+        super.onBorrowSuccess(book);
+        System.out.println("  -> Da ghi nhan: Nguoi cao tuoi — khong thu phi phat");
+    }
 }

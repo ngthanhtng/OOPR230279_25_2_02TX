@@ -53,6 +53,35 @@ public abstract class Reader {
     public abstract double calculateLateFee(int daysLate);
 
     public abstract String getInfo();
+
+    public final BorrowResult processBorrow(Book book) {
+        if (!checkBorrowQuota()) {
+            return new BorrowResult(false, "Da dat gioi han muon: " +
+                    getMaxBorrowLimit() + " cuon");
+        }
+
+        if (!checkSpecialCondition(book)) {
+            return new BorrowResult(false, getSpecialConditionMessage());
+        }
+
+        book.borrowBook();
+        currentBorrowCount++;
+
+        onBorrowSuccess(book);
+        return new BorrowResult(true, "Muon thanh cong: " + book.getTitle());
+    }
+
+    private boolean checkBorrowQuota() {
+        return currentBorrowCount < getMaxBorrowLimit();
+    }
+
+    protected abstract boolean checkSpecialCondition(Book book);
+
+    protected abstract String getSpecialConditionMessage();
+
+    protected void onBorrowSuccess(Book book) {
+        System.out.println(getFullName() + " muon: " + book.getTitle());
+    }
 }
 
 /*
@@ -62,3 +91,4 @@ public abstract class Reader {
      * Khi GuestReader được truyền vào nơi đang mong đợi Reader, chương trình bị lỗi runtime.
      * Vì vậy GuestReader không thể thay thế hoàn toàn Reader => vi phạm LSP.
  */
+

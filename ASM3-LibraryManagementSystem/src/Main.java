@@ -10,7 +10,12 @@ public class Main {
     public static void main(String[] args) {
         // Khởi tạo
         Library library = new Library();
-        Librarian librarian = new Librarian();
+        Librarian librarian = new Librarian(
+                "TT01",
+                "Le Thi Duyen",
+                "0904",
+                "Morning",
+                library);
 
         Menu menu = new Menu(library, librarian);
 
@@ -122,6 +127,22 @@ public class Main {
         library.renewAllCardHolders(holders, 1);
 
         Library.printFeeReport(library.getReaders(), 5);
+
+        // ASM 7 + nâng cao
+        System.out.println("=== Thang binh thuong ===");
+        library.calculateTotalLateFee(7);
+
+        System.out.println("=== Thang tu thien ===");
+        library.setFeePolicy(new CharityFeePolicy());
+        library.calculateTotalLateFee(7);
+
+        System.out.println("=== Thang khai truong ===");
+        library.setFeePolicy(new WaivedFeePolicy());
+        library.calculateTotalLateFee(7);
+
+        // Compile Error:
+        // library.addReader(librarian); // Librarian không phải Reader.
+        // Thiết kế mới an toàn hơn.
 
         // ASM 1-4
         menu.start();

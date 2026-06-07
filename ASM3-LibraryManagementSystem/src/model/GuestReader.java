@@ -20,4 +20,14 @@ public class GuestReader extends Reader {
     public String getInfo() {
         return "Guest Reader";
     }
+
+    @Override
+    protected boolean checkSpecialCondition(Book book) {
+        return false;
+    }
+
+    @Override
+    protected String getSpecialConditionMessage() {
+        return "";
+    }
 }
