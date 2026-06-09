@@ -29,16 +29,8 @@ public class Book {
     }
 
     public Book(String title, String author, int publishYear, int quantity, boolean referenceOnly) {
-        counter++;
-        this.bookId = String.format("B%03d", counter);
-        this.title = title;
-        this.author = author;
-        this.publishYear = publishYear;
-        this.quantity = quantity;
+        this(title, author, publishYear, quantity);
         this.referenceOnly = referenceOnly;
-
-        this.currentBorrowCount = 0;
-        totalBooks++;
     }
 
     public String getBookId() {
