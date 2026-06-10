@@ -1,0 +1,14 @@
+C:\Users\tungntbs00541\IdeaProjects\26TX810021\C4-D1_ASM\PhanSoApp\bin\Debug\net10.0\PhanSoApp.exe
+C:\Users\tungntbs00541\IdeaProjects\26TX810021\C4-D1_ASM\PhanSoApp\bin\Debug\net10.0\PhanSoApp.deps.json
+C:\Users\tungntbs00541\IdeaProjects\26TX810021\C4-D1_ASM\PhanSoApp\bin\Debug\net10.0\PhanSoApp.runtimeconfig.json
+C:\Users\tungntbs00541\IdeaProjects\26TX810021\C4-D1_ASM\PhanSoApp\bin\Debug\net10.0\PhanSoApp.dll
+C:\Users\tungntbs00541\IdeaProjects\26TX810021\C4-D1_ASM\PhanSoApp\bin\Debug\net10.0\PhanSoApp.pdb
+C:\Users\tungntbs00541\IdeaProjects\26TX810021\C4-D1_ASM\PhanSoApp\obj\Debug\net10.0\PhanSoApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\tungntbs00541\IdeaProjects\26TX810021\C4-D1_ASM\PhanSoApp\obj\Debug\net10.0\PhanSoApp.AssemblyInfoInputs.cache
+C:\Users\tungntbs00541\IdeaProjects\26TX810021\C4-D1_ASM\PhanSoApp\obj\Debug\net10.0\PhanSoApp.AssemblyInfo.cs
+C:\Users\tungntbs00541\IdeaProjects\26TX810021\C4-D1_ASM\PhanSoApp\obj\Debug\net10.0\PhanSoApp.csproj.CoreCompileInputs.cache
+C:\Users\tungntbs00541\IdeaProjects\26TX810021\C4-D1_ASM\PhanSoApp\obj\Debug\net10.0\PhanSoApp.dll
+C:\Users\tungntbs00541\IdeaProjects\26TX810021\C4-D1_ASM\PhanSoApp\obj\Debug\net10.0\refint\PhanSoApp.dll
+C:\Users\tungntbs00541\IdeaProjects\26TX810021\C4-D1_ASM\PhanSoApp\obj\Debug\net10.0\PhanSoApp.pdb
+C:\Users\tungntbs00541\IdeaProjects\26TX810021\C4-D1_ASM\PhanSoApp\obj\Debug\net10.0\PhanSoApp.genruntimeconfig.cache
+C:\Users\tungntbs00541\IdeaProjects\26TX810021\C4-D1_ASM\PhanSoApp\obj\Debug\net10.0\ref\PhanSoApp.dll
