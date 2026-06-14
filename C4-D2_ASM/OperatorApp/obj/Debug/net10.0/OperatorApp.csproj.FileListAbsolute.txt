@@ -1,0 +1,15 @@
+C:\Users\tungntbs00541\IdeaProjects\OOP\C4-D2_ASM\OperatorApp\bin\Debug\net10.0\OperatorApp.exe
+C:\Users\tungntbs00541\IdeaProjects\OOP\C4-D2_ASM\OperatorApp\bin\Debug\net10.0\OperatorApp.deps.json
+C:\Users\tungntbs00541\IdeaProjects\OOP\C4-D2_ASM\OperatorApp\bin\Debug\net10.0\OperatorApp.runtimeconfig.json
+C:\Users\tungntbs00541\IdeaProjects\OOP\C4-D2_ASM\OperatorApp\bin\Debug\net10.0\OperatorApp.dll
+C:\Users\tungntbs00541\IdeaProjects\OOP\C4-D2_ASM\OperatorApp\bin\Debug\net10.0\OperatorApp.pdb
+C:\Users\tungntbs00541\IdeaProjects\OOP\C4-D2_ASM\OperatorApp\obj\Debug\net10.0\OperatorApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\tungntbs00541\IdeaProjects\OOP\C4-D2_ASM\OperatorApp\obj\Debug\net10.0\OperatorApp.AssemblyInfoInputs.cache
+C:\Users\tungntbs00541\IdeaProjects\OOP\C4-D2_ASM\OperatorApp\obj\Debug\net10.0\OperatorApp.AssemblyInfo.cs
+C:\Users\tungntbs00541\IdeaProjects\OOP\C4-D2_ASM\OperatorApp\obj\Debug\net10.0\OperatorApp.csproj.CoreCompileInputs.cache
+C:\Users\tungntbs00541\IdeaProjects\OOP\C4-D2_ASM\OperatorApp\obj\Debug\net10.0\OperatorApp.sourcelink.json
+C:\Users\tungntbs00541\IdeaProjects\OOP\C4-D2_ASM\OperatorApp\obj\Debug\net10.0\OperatorApp.dll
+C:\Users\tungntbs00541\IdeaProjects\OOP\C4-D2_ASM\OperatorApp\obj\Debug\net10.0\refint\OperatorApp.dll
+C:\Users\tungntbs00541\IdeaProjects\OOP\C4-D2_ASM\OperatorApp\obj\Debug\net10.0\OperatorApp.pdb
+C:\Users\tungntbs00541\IdeaProjects\OOP\C4-D2_ASM\OperatorApp\obj\Debug\net10.0\OperatorApp.genruntimeconfig.cache
+C:\Users\tungntbs00541\IdeaProjects\OOP\C4-D2_ASM\OperatorApp\obj\Debug\net10.0\ref\OperatorApp.dll
