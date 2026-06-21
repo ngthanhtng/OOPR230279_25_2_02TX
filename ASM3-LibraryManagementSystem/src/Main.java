@@ -5,9 +5,13 @@ import model.*;
 import service.Librarian;
 import service.Library;
 import service.LibraryManager;
+import utils.GenericStack;
+import utils.LibraryUtils;
+import utils.Pair;
 import view.Menu;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
@@ -23,7 +27,7 @@ public class Main {
 
         Menu menu = new Menu(library, librarian);
 
-        //region ASM5 + nâng cao
+        //region ASM 5 + nâng cao
         System.out.println();
         System.out.println("===========================");
         System.out.println("********** ASM 5 **********");
@@ -107,7 +111,7 @@ public class Main {
          */
         //endregion
 
-        //region ASM6 + nâng cao
+        //region ASM 6 + nâng cao
         System.out.println();
         System.out.println("===========================");
         System.out.println("********** ASM 6 **********");
@@ -209,6 +213,86 @@ public class Main {
         users.add(library.findReaderById("R002"));
 
         manager.notifyAll(users, "Library will be closed tomorrow.");
+        //endregion
+
+        //region ASM C5-D2
+        System.out.println();
+        System.out.println("===============================");
+        System.out.println("********** ASM C5-D2 **********");
+        System.out.println("===============================");
+        // ================= String Stack =================
+        GenericStack<String> history = new GenericStack<>();
+
+        history.push("Muon sach B001");
+        history.push("Tra sach B002");
+        history.push("Cap nhat doc gia R001");
+
+        System.out.println("Top element: " + history.peek());
+
+        System.out.println("Pop: " + history.pop());
+        System.out.println("Pop: " + history.pop());
+
+        System.out.println("Current size: " + history.size());
+
+        // ================= Integer Stack =================
+        GenericStack<Integer> errorCodes = new GenericStack<>();
+
+        errorCodes.push(100);
+        errorCodes.push(200);
+        errorCodes.push(404);
+
+        System.out.println("\nError codes in stack:");
+
+        while (!errorCodes.isEmpty()) {
+            System.out.println(errorCodes.pop());
+        }
+
+        System.out.println();
+        // ================= Pair<String, Integer> =================
+        Pair<String, Integer> pBook1 = new Pair<>("B001", 15);
+        Pair<String, Integer> pBook2 = new Pair<>("B002", 8);
+
+        System.out.println(pBook1);
+        System.out.println(pBook2);
+
+        int result = Pair.comparePairs(pBook1, pBook2);
+
+        if (result > 0) {
+            System.out.println(pBook1.getKey() + " has more borrows.");
+        } else if (result < 0) {
+            System.out.println(pBook2.getKey() + " has more borrows.");
+        } else {
+            System.out.println("Both books have the same borrow count.");
+        }
+
+        // ================= Pair<String, String> =================
+        Pair<String, String> reader = new Pair<>("Nguyen Van An", "R001");
+
+        System.out.println("\nOriginal Pair:");
+        System.out.println(reader);
+
+        Pair<String, String> swapped = Pair.swap(reader);
+
+        System.out.println("After swap:");
+        System.out.println(swapped);
+
+        Integer[] numbers = {
+                library.findBookById("b001").getQuantity(),
+                library.findBookById("b002").getQuantity(),
+                library.findBookById("b003").getQuantity(),
+                library.findBookById("b004").getQuantity(),
+                library.findBookById("b005").getQuantity()
+        };
+        System.out.println("Min = " + LibraryUtils.findMin(numbers));
+
+        System.out.println("=== Print Books ===");
+        LibraryUtils.printAll(library.getBooks());
+
+        List<Object> destination = new ArrayList<>();
+        LibraryUtils.copyList(destination, library.getReaders());
+
+        System.out.println("=== Destination ===");
+        LibraryUtils.printAll(destination);
         //endregion
 
         //region ASM 1-4

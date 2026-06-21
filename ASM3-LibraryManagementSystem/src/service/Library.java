@@ -20,6 +20,10 @@ public class Library implements Searchable {
         return readers;
     }
 
+    public ArrayList<Book> getBooks() {
+        return books;
+    }
+
     public void setFeePolicy(LateFeePolicy policy) {
         this.feePolicy = policy;
         System.out.println("Cap nhat chinh sach phi phat: " + policy.getPolicyName());

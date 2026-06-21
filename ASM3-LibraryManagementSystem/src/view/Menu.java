@@ -83,6 +83,15 @@ public class Menu {
                 )
         );
 
+        library.addBook(
+                new Book(
+                        "Java Core",
+                        "Cay S. Horstmann",
+                        2022,
+                        3
+                )
+        );
+
         // ================= READERS =================
 //        library.addReader(
 //                new Reader("R001","Nguyen","a@b.com")

@@ -100,6 +100,11 @@ public abstract class Reader implements Notifiable {
     public List<String> getNotificationHistory() {
         return notifications;
     }
+
+    @Override
+    public String toString() {
+        return "ID: " + readerId + " | Fullname: " + fullName + " | Email: " + email;
+    }
 }
 
 /*

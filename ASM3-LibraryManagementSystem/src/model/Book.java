@@ -115,4 +115,16 @@ public class Book implements Borrowable {
                         " | Is Reference Only: " + referenceOnly
         );
     }
+
+    @Override
+    public String toString() {
+        return
+                        "ID: " + bookId +
+                        " | Title: " + title +
+                        " | Author: " + author +
+                        " | Year: " + publishYear +
+                        " | Quantity: " + quantity +
+                        " | Borrowed: " + currentBorrowCount +
+                        " | Is Reference Only: " + referenceOnly;
+    }
 }
