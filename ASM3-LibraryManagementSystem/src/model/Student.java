@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 public class Student extends CardHolder {
 
     public Student(String fullName, String email) {

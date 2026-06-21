@@ -2,6 +2,8 @@ package model;
 
 import model.Reader;
 
+import java.util.List;
+
 public class GuestReader extends Reader {
 
     public GuestReader() {}

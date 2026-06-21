@@ -1,11 +1,14 @@
 package service;
 
+import interfaces.LateFeePolicy;
+import interfaces.Searchable;
 import model.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
-public class Library {
+public class Library implements Searchable {
 
     private ArrayList<Book> books = new ArrayList<>();
     private ArrayList<Reader> readers = new ArrayList<>();
@@ -102,18 +105,23 @@ public class Library {
 
     // ================= SEARCH =================
     public void searchBook(String keyword) {
-        boolean found = false;
+        ArrayList<Book> result = new ArrayList<>();
 
-        for (Book b : books) {
-            if (b.getTitle().toLowerCase().contains(keyword.toLowerCase())
-                    || b.getAuthor().toLowerCase().contains(keyword.toLowerCase())) {
-                b.displayInfo();
-                found = true;
+        result.addAll(searchByTitle(keyword));
+
+        for (Book b : searchByAuthor(keyword)) {
+            if (!result.contains(b)) {
+                result.add(b);
             }
         }
 
-        if (!found) {
+        if (result.isEmpty()) {
             System.out.println("No matching books found!");
+            return;
+        }
+
+        for (Book b : result) {
+            b.displayInfo();
         }
     }
 
@@ -267,5 +275,31 @@ public class Library {
         for (Reader r : readers) {
             System.out.printf("%s | %.0f VND%n", r.getFullName(), r.calculateLateFee(daysLate));
         }
+    }
+
+    @Override
+    public List<Book> searchByTitle(String keyword) {
+        ArrayList<Book> result = new ArrayList<>();
+
+        for (Book b : books) {
+            if (b.getTitle().toLowerCase().contains(Searchable.normalizeKeyword(keyword))) {
+                result.add(b);
+            }
+        }
+
+        return result;
+    }
+
+    @Override
+    public List<Book> searchByAuthor(String keyword) {
+        ArrayList<Book> result = new ArrayList<>();
+
+        for (Book b : books) {
+            if (b.getAuthor().toLowerCase().contains(Searchable.normalizeKeyword(keyword))) {
+                result.add(b);
+            }
+        }
+
+        return result;
     }
 }

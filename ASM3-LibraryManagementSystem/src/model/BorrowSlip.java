@@ -1,10 +1,11 @@
 package model;
 
+import interfaces.Returnable;
 import utils.ValidationHelper;
 
 import java.time.LocalDate;
 
-public class BorrowSlip {
+public class BorrowSlip implements Returnable {
 
     private String slipId;
     private Reader reader;
@@ -48,10 +49,21 @@ public class BorrowSlip {
         return dueDate;
     }
 
-    public LocalDate getReturnDate() {
-        return returnDate;
+    @Override
+    public void confirmReturn(String date) {
+        this.returnDate = LocalDate.parse(date);
+        this.returned = true;
     }
 
+    @Override
+    public String getReturnDate() {
+        if (returnDate == null) {
+            return null;
+        }
+        return returnDate.toString();
+    }
+
+    @Override
     public boolean isReturned() {
         return returned;
     }

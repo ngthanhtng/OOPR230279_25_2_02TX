@@ -2,6 +2,7 @@ package utils;
 
 import model.BorrowSlip;
 
+import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 public class FineCalculator {
@@ -15,11 +16,11 @@ public class FineCalculator {
         }
 
         // Trả đúng hạn
-        if (!slip.getReturnDate().isAfter(slip.getDueDate())) {
+        if (!LocalDate.parse(slip.getReturnDate()).isAfter(slip.getDueDate())) {
             return 0;
         }
 
-        long lateDays = ChronoUnit.DAYS.between(slip.getDueDate(), slip.getReturnDate());
+        long lateDays = ChronoUnit.DAYS.between(slip.getDueDate(), LocalDate.parse(slip.getReturnDate()));
         return slip.getReader().calculateLateFee((int) lateDays);
     }
 }

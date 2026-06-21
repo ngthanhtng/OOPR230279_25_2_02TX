@@ -1,6 +1,11 @@
 package model;
 
-public abstract class Reader {
+import interfaces.Notifiable;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public abstract class Reader implements Notifiable {
 
     private String readerId;
     private String fullName;
@@ -11,6 +16,8 @@ public abstract class Reader {
     // Static
     private static int counter = 0;
     private static int totalReaders = 0;
+
+    protected ArrayList<String> notifications = new ArrayList<>();
 
     public Reader() {}
 
@@ -81,6 +88,17 @@ public abstract class Reader {
 
     protected void onBorrowSuccess(Book book) {
         System.out.println(getFullName() + " muon: " + book.getTitle());
+    }
+
+    @Override
+    public void sendNotification(String message) {
+        notifications.add(message);
+        System.out.println("[" + getFullName() + "] Notification: " + message);
+    }
+
+    @Override
+    public List<String> getNotificationHistory() {
+        return notifications;
     }
 }
 

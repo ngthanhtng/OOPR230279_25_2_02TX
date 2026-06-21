@@ -1,6 +1,10 @@
+import interfaces.Borrowable;
+import interfaces.Fineable;
+import interfaces.Notifiable;
 import model.*;
 import service.Librarian;
 import service.Library;
+import service.LibraryManager;
 import view.Menu;
 
 import java.util.ArrayList;
@@ -19,7 +23,11 @@ public class Main {
 
         Menu menu = new Menu(library, librarian);
 
-        // ASM5 + nâng cao
+        //region ASM5 + nâng cao
+        System.out.println();
+        System.out.println("===========================");
+        System.out.println("********** ASM 5 **********");
+        System.out.println("===========================");
         library.showLateFees(7);
 
         /*
@@ -97,8 +105,13 @@ public class Main {
          *      (email + password, email + OTP, RFID,...).
          *    - Chưa có cơ chế bảo mật và quản lý số lần tải thực tế.
          */
+        //endregion
 
-        // ASM6 + nâng cao
+        //region ASM6 + nâng cao
+        System.out.println();
+        System.out.println("===========================");
+        System.out.println("********** ASM 6 **********");
+        System.out.println("===========================");
         library.addReader(
                 new SeniorReader(
                         "Truong Minh Nhat",
@@ -127,8 +140,13 @@ public class Main {
         library.renewAllCardHolders(holders, 1);
 
         Library.printFeeReport(library.getReaders(), 5);
+        //endregion
 
-        // ASM 7 + nâng cao
+        //region ASM 7 + nâng cao
+        System.out.println();
+        System.out.println("===========================");
+        System.out.println("********** ASM 7 **********");
+        System.out.println("===========================");
         System.out.println("=== Thang binh thuong ===");
         library.calculateTotalLateFee(7);
 
@@ -143,8 +161,62 @@ public class Main {
         // Compile Error:
         // library.addReader(librarian); // Librarian không phải Reader.
         // Thiết kế mới an toàn hơn.
+        //endregion
 
-        // ASM 1-4
+        //region ASM C5-D1
+        System.out.println();
+        System.out.println("===============================");
+        System.out.println("********** ASM C5-D1 **********");
+        System.out.println("===============================");
+        Borrowable book1 = library.findBookById("B001");
+        Borrowable book2 = library.findBookById("B005");
+
+        book1.borrowBy("R001", "2026-06-18");
+        book2.borrowBy("R004", "2026-06-20");
+        System.out.println("Available: " + book2.isAvailable()); // true
+
+        // Dung static method cua interface
+        System.out.println(Borrowable.isValidBorrowDuration(10)); // true
+        System.out.println(Borrowable.isValidBorrowDuration(20)); // false
+
+        // Dung default method
+        System.out.println(book1.calculateFine(3)); // 15000.0
+
+        book1.returnBook("2024-09-15");
+
+        System.out.println();
+        Fine fine = new Fine(5000, 7, false);
+
+        System.out.println("Fine/day: " + fine.getFinePerDay());
+        System.out.println("Late days: " + fine.getLateDays());
+        System.out.println("Total fine: " + fine.calculateTotalFine());
+
+        System.out.println(
+                Fineable.isValidFine(fine.getFinePerDay())
+        );
+
+        System.out.println();
+        LibraryManager manager = new LibraryManager();
+
+        ArrayList<Borrowable> borrowables = new ArrayList<>();
+        borrowables.add(book1);
+        borrowables.add(book2);
+
+        manager.processAllBorrowable(borrowables);
+
+        ArrayList<Notifiable> users = new ArrayList<>();
+        users.add(library.findReaderById("R001"));
+        users.add(library.findReaderById("R002"));
+
+        manager.notifyAll(users, "Library will be closed tomorrow.");
+        //endregion
+
+        //region ASM 1-4
+        System.out.println();
+        System.out.println("=============================");
+        System.out.println("********** ASM 1-4 **********");
+        System.out.println("=============================");
         menu.start();
+        //endregion
     }
 }

@@ -1,6 +1,8 @@
 package model;
 
-public class Book {
+import interfaces.Borrowable;
+
+public class Book implements Borrowable {
 
     private String bookId;
     private String title;
@@ -8,6 +10,8 @@ public class Book {
     private int publishYear;
     private int quantity;
     private boolean referenceOnly;
+    private String currentBorrowerId; // null neu chua ai muon
+    private String borrowDate;
 
     // Số lượng sách được mượn hiện tại
     private int currentBorrowCount;
@@ -23,6 +27,7 @@ public class Book {
         this.publishYear = publishYear;
         this.quantity = quantity;
         this.referenceOnly = false;
+        this.currentBorrowerId = null;
 
         this.currentBorrowCount = 0;
         totalBooks++;
@@ -31,6 +36,10 @@ public class Book {
     public Book(String title, String author, int publishYear, int quantity, boolean referenceOnly) {
         this(title, author, publishYear, quantity);
         this.referenceOnly = referenceOnly;
+    }
+
+    public Book(String title, String author) {
+        this(title, author, 2000, 1);
     }
 
     public String getBookId() {
@@ -53,8 +62,32 @@ public class Book {
         return currentBorrowCount;
     }
 
+    @Override
+    public void borrowBy(String readerId, String date) {
+        if (!isAvailable()) {
+            System.out.println("Book '" + title + "' is not available.");
+            return;
+        }
+        this.currentBorrowerId = readerId;
+        this.borrowDate        = date;
+        System.out.println("Book '" + title + "' borrowed by " + readerId);
+    }
+
+    @Override
+    public void returnBook(String date) {
+        System.out.println("Book '" + title + "' returned on " + date);
+        this.currentBorrowerId = null;
+        this.borrowDate        = null;
+    }
+
+    @Override
     public boolean isAvailable() {
         return quantity > 0;
+    }
+
+    @Override
+    public String getBorrowerId() {
+        return currentBorrowerId;
     }
 
     public boolean isReferenceOnly() {

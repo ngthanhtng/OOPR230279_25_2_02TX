@@ -204,7 +204,7 @@ public class Menu {
 
     // ================= MENU =================
     private void showMenu() {
-        System.out.println("\n===== LIBRARY MANAGEMENT =====");
+        System.out.println("===== LIBRARY MANAGEMENT =====");
 
         System.out.println("1. Add Book");
         System.out.println("2. Add Reader");

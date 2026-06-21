@@ -1,5 +1,7 @@
 package model;
 
+import interfaces.LateFeePolicy;
+
 public class CharityFeePolicy implements LateFeePolicy {
 
     @Override

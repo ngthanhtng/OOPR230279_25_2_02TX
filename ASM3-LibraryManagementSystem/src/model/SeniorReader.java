@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 public class SeniorReader extends CardHolder {
 
     private String seniorCardNumber;
